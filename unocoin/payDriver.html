@@ -5,34 +5,50 @@
 <script type="text/javascript">
 
 function initiateAuthentication(){
-	var clientId = $("#clientId").value;
-	var clientSecret = $("#clientSecret").value;
-	var stateOfAuthentication = getAccessToken(clientId, clientSecret);
-	console.log(stateOfAuthentication);
+	var clientId = $("#clientId").val();
+	var clientSecret = $("#clientSecret").val();
+	// alert(clientId);
+	var access_token = "";
+	var stateOfAuthentication = getAccessToken(clientId, clientSecret,(res)=>{
+		
+		access_token = res.access_token;
+		console.log(access_token);
+
+	});
+
+	signIn(access_token);
 }
-function getAccessToken(){
+// function for authorization
+function signIn(access_token){
+	
+}
+function getAccessToken(client_id_var, client_secret_var, cb){
 	var form = new FormData();
 	form.append("grant_type", "client_credentials");
-	
-	var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://sandbox.unocoin.co/oauth/token",
-  "method": "POST",
-  "headers": {
-  	"Access-Control-Allow-Headers" :  "true",
-    "content-type": "application/json",
-    "authorization": "Basic "+btoa("9RW1NF2WNT"+":"+"43f958df-bb48-4385-b59d-9f0bce36c1b1"),
-    "cache-control": "no-cache",
-    "postman-token": "bdcaee58-1143-a410-2315-468ff4042cad"
-  },
-  "processData": false,
-  "data": "{\n\"code\":\"a947fa3e6e809fbe0301d6abcce528ec4edbd74c\",\n\n\"redirect_uri\":\"http://xobhome.com\",\n\"grant_type\":\"authorization_code\",\n\"access_lifetime\":10\n}"
-}
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://sandbox.unocoin.co/oauth/token",
+	  "method": "POST",
+	  "headers": {
+
+	    "authorization": "Basic "+btoa(client_id_var+":"+client_secret_var),
+	    "cache-control": "no-cache"
+	    
+	  },
+	  "processData": false,
+	  "contentType": false,
+	  "mimeType": "multipart/form-data",
+	  "data": form
+	}
+
+	$.ajax(settings).done(function (response) {
+	  //console.log(response);
+	  // response1 = jQuery.parseJSON(response);
+	  // console.log(response1.access_token);
+	  cb(JSON.parse(response))
+	}); 
 }
 </script>
 
