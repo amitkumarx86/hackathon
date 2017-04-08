@@ -1,0 +1,42 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+function initiateAuthentication(){
+	var clientId = $("#clientId").value;
+	var clientSecret = $("#clientSecret").value;
+	var stateOfAuthentication = getAccessToken(clientId, clientSecret);
+	console.log(stateOfAuthentication);
+}
+function getAccessToken(){
+	var form = new FormData();
+	form.append("grant_type", "client_credentials");
+	
+	var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://sandbox.unocoin.co/oauth/token",
+  "method": "POST",
+  "headers": {
+  	"Access-Control-Allow-Headers" :  "true",
+    "content-type": "application/json",
+    "authorization": "Basic "+btoa("9RW1NF2WNT"+":"+"43f958df-bb48-4385-b59d-9f0bce36c1b1"),
+    "cache-control": "no-cache",
+    "postman-token": "bdcaee58-1143-a410-2315-468ff4042cad"
+  },
+  "processData": false,
+  "data": "{\n\"code\":\"a947fa3e6e809fbe0301d6abcce528ec4edbd74c\",\n\n\"redirect_uri\":\"http://xobhome.com\",\n\"grant_type\":\"authorization_code\",\n\"access_lifetime\":10\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+}
+</script>
+
+<input type="hidden" name="clientId"  id="clientId" value="9RW1NF2WNT"/>
+<input type="hidden" name="clientSecret" id="clientSecret" value="43f958df-bb48-4385-b59d-9f0bce36c1b1"/>
+<input type="button" onclick="initiateAuthentication()" value="getAccessToken" />
+
