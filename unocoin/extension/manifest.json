@@ -18,10 +18,10 @@
 
   "page_action": {
     "default_title": "Unocoin Payment Extension",
-    //"default_icon": {
-    //    "128": "img/icon.png"
+    "default_icon": {
+        "128": "icon.png"
    
-    //},
+    },
     "default_popup": "popup.html"
   }
 

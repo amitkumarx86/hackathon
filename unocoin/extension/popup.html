@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script type="text/javascript" src="popup.js"></script>
-  </head>
-  <body>
-    <h3 style="font-weight:bold; text-align:center;">UniCoin Wallet</h3>
-    <input text="text" id="amount" name="amount" placeholder="enter amount to transfer" style="margin: 5px;" />
-    <input text="text" id="address" name="address" placeholder="enter sender to transfer" style="margin: 5px;"/>
-    <input type="submit" value="pay" style="margin: 5px;" />
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 
-    
-    
-  </body>
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+
+<script type="text/javascript" src="popup.js"></script>
+<link rel="stylesheet" href="ext.css">
+</head>
+<body style="width: 300px;height: 300px;">
+
+<ul>
+  <li><a class="active" href="#payBitCoin">Pay</a></li>
+  <li><a href="#buyBitCoin()" id="buy">Buy</a></li>
+  <li><a href="#bitCointPrice" id="price">BitCoin Price</a></li>
+  <li><img src="icon2.jpg" style="width: 36px;margin-top: 6px;border-radius: 50%;margin-left: 17px;" /></li>
+</ul>
+
+
+<!-- row for form -->
+<div style="padding: 15px;" id="main">
+	<label class="uno-text-blue" ><b>Bit Coin Amount</b></label>
+	<input class="uno-input uno-border" name="amnt" id="amnt" type="text" ></p>
+	<p>      
+	<label class="uno-text-blue" ><b>Bit Coin Address</b></label>
+	<input class="uno-input uno-border" name="address" id="address" type="text" ></p>
+	<p>      
+	<button class="uno-btn uno-blue" id="pay" style="height: 38px;" >Pay</button></p>
+</div>
+<div id="credentials" style="padding:15px">
+
+</div>
+<div id="data">
+	
+</div>
+</body>
 </html>

@@ -12,17 +12,82 @@ function initiateAuthentication(){
 	var stateOfAuthentication = getAccessToken(clientId, clientSecret,(res)=>{
 		
 		access_token = res.access_token;
-		console.log(access_token);
+		console.log("access_token "+access_token);
+		signIn(access_token, clientId, (res)=>{
+		
+		//access_token = res.access_token;
+		console.log("response signin "+res);
 
+		});
 	});
-
-	signIn(access_token);
-}
-// function for authorization
-function signIn(access_token){
+	
+	
 	
 }
-function getAccessToken(client_id_var, client_secret_var, cb){
+// function for authorization
+function signIn(access_token, client_id, cb){
+	// var email = prompt("email","");
+	// var password = prompt("password","");
+	var email = "team50@gmail.com";
+	var password = "3GfnFysy";
+	var OTP = "999999";
+	var form = new FormData();
+	form.append("email_id", email);
+	form.append("signinpassword", password);
+	form.append("client_id", client_id);
+	form.append("signinsecpwd", OTP);
+
+
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "http://localhost/index.php",
+	  "method": "POST",
+	   
+	  "processData": false,
+	  "contentType": false,
+	  "mimeType": "multipart/form-data"
+	  //"data": form
+	}
+
+	$.ajax(settings).done(function (response) {
+	  //console.log(response);
+	  // response1 = jQuery.parseJSON(response);
+	  console.log(response);
+	  
+	}); 
+}
+function bitCoinDetails(){
+	
+}
+function bitCoinDetails(access_token, client_id, cb){
+	
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://sandbox.unocoin.co/api/v1/wallet/bitcoinaddress",
+	  "method": "POST",
+	  "headers": {
+
+	    "authorization": "Bearer "+access_token,
+	    "cache-control": "no-cache"
+	  },
+	  "processData": false,
+	  "contentType": false,
+	  "mimeType": "multipart/form-data"
+	  //"data": form
+	}
+
+	$.ajax(settings).done(function (response) {
+	  //console.log(response);
+	  // response1 = jQuery.parseJSON(response);
+	  // console.log(response1.access_token);
+	  cb(JSON.parse(response))
+	}); 
+	
+
+}
+function getAccessToken(client_id_var, client_secret_var, cb){	
 	var form = new FormData();
 	form.append("grant_type", "client_credentials");
 
