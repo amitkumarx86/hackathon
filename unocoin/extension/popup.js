@@ -151,6 +151,7 @@ function callBuyItemAPI(client_id, client_secret, email, pass, bitCoins, recieve
     //alert(client_id+" "+client_secret+" "+email+" "+pass+" "+bitCoins+" "+bitaddress +" " + OTP);
     //testing
     if(bitCoins != "" && recieverbitaddress != ""){
+        /*
         var client_id="9RW1NF2WNT"
         var client_secret="43f958df-bb48-4385-b59d-9f0bce36c1b1";
         var  email="team50@gmail.com";
@@ -158,6 +159,7 @@ function callBuyItemAPI(client_id, client_secret, email, pass, bitCoins, recieve
         var  bitCoins="0.0002";
         var  recieverbitaddress="32waespAbSj5eoEGnXDciW9pg7hWhtuZt4";
         var  OTP="999999";    //loading image
+        */
         
         document.getElementById("data").innerHTML='<img src="loading.gif" id="load" style="width: 295px;">';
         
@@ -190,14 +192,15 @@ function callBuyItemAPI(client_id, client_secret, email, pass, bitCoins, recieve
         http.send(params);
     }
     else{
-      var client_id="9RW1NF2WNT"
+        /*
+        var client_id="9RW1NF2WNT"
         var client_secret="43f958df-bb48-4385-b59d-9f0bce36c1b1";
         var  email="team50@gmail.com";
         var  pass="3GfnFysy";
         var  bitCoins="0.0002";
         var  recieverbitaddress="32waespAbSj5eoEGnXDciW9pg7hWhtuZt4";
         var  OTP="999999";    //loading image
-        
+        */
         document.getElementById("data").innerHTML='<img src="loading.gif" id="load" style="width: 295px;">';
         
 
@@ -229,7 +232,7 @@ function callBuyItemAPI(client_id, client_secret, email, pass, bitCoins, recieve
 }
 // but btc 
 function callBuyBitCoin(access_token, btc){
-  alert("call by btc");
+  //alert("call by btc");
   var http = new XMLHttpRequest();
     var url = IP+":"+PORT+"/bit/buy";
      
